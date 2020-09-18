@@ -1,0 +1,35 @@
+<%- include("./partials/header.ejs") %>
+
+
+
+
+
+
+
+
+
+
+<div class="ui main text container segment">
+    <div class="ui huge header"><%= blog.title %></div>
+    <div class="ui top attached">
+        <div class="item">
+            <img class="ui centered rounded image" src="<%= blog.image %>">
+            <div class="content">
+                <span><%= blog.created.toDateString() %></span>
+            </div>
+            <div class="description">
+                <p><%- blog.body %></p>
+            </div>
+            <br>
+            <a class="ui orange basic button" href="/blogs/<%= blog._id %>/edit">Edit</a>
+
+            <!-- Technically this is a POST request, but the ?_method=DELETE makes it delete -->
+            <!-- REMEMBER - is not inline be default.   Therefore, you must add the ID to the form to get it inline. -->
+            <form id="delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+                <button class="ui red basic button">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include("./partials/footer.ejs") %>

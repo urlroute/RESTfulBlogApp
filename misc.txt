@@ -1,0 +1,33 @@
+// *********************************** OLD CODE ************************
+
+//  LANDING PAGE V2
+// IF YOU WANT TO RENDER AN EJS FILE
+app.get('/', function (req, res) {
+   // console.log(req.params);
+   res.render('landing');
+});
+
+app.get("/campgrounds", function (req, res) {
+   res.render("campgrounds", {campgrounds:campgrounds});
+});
+
+
+//logic: 
+//redirecting to "/campgrounds" and 
+//your taking in name & image and 
+//then pushing name & image
+//this section will add the new campground to the screen
+app.post("/campgrounds", function (req, res) {
+   var name = req.body.name;
+   var image = req.body.image;
+   var newCampground = {name: name, image: image}
+   campgrounds.push(newCampground);
+   //redirect defaults to a get request
+   res.redirect("/campgrounds");
+});
+
+//Shows the Form
+// Form - user will enter data here
+app.get("/campgrounds/new", function(req, res) {
+   res.render("new.ejs");
+});
